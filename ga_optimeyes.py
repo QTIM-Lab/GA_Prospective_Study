@@ -43,6 +43,11 @@ larguinchona_dir = os.path.join(DATA_DIR, "larguinchona_manual_1")
 larguinchona_images = [file for file in os.listdir(larguinchona_dir) if file.find(".png") != -1]
 larguinchona_test_image_annotations = get_test_image_annotations(larguinchona_images)
 
+iroseto_dir = os.path.join(DATA_DIR, "iroseto_manual_1")
+iroseto_images = [file for file in os.listdir(iroseto_dir) if file.find(".png") != -1]
+iroseto_test_image_annotations = get_test_image_annotations(iroseto_images)
+
+
 def get_image_array(image_path):
     sample_image = Image.open(image_path)
     img_array = np.array(sample_image)
@@ -63,6 +68,12 @@ def get_image_array(image_path):
 
 bmarks_image_1_flat = get_image_array(os.path.join(bmarks_dir, bmarks_test_image_annotations["1"]))
 larguinchona_image_1_flat = get_image_array(os.path.join(larguinchona_dir, larguinchona_test_image_annotations["1"]))
+iroseto_image_1_flat = get_image_array(os.path.join(iroseto_dir, iroseto_test_image_annotations["1"]))
+
+
+# Calculate F1 score
+f1 = f1_score(bmarks_image_1_flat, larguinchona_image_1_flat)
+print(f"F1 Score: {f1}")
 
 
 # Calculate F1 score
